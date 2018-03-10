@@ -1,0 +1,49 @@
+
+  /* rgba(88, 107, 164, 1);  /* BLUE YONDER   */
+  /* rgba(50, 67, 118, 1);   /* DEEP KOAMARU  */
+  /* rgba(245, 221, 144, 1); /* FLAVESCENT    */
+  /* rgba(246, 142, 95, 1);  /* BIG FOOT FEET */
+  /* rgba(247, 108, 94, 1);  /* BITTERSWEET   */ 
+
+
+body {
+    background-color: rgba(245, 221, 144, 1);
+    color: rgba(50, 67, 118, 1);
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+}
+
+
+header {
+    color: rgba(50, 67, 118, 1);
+    font-size: 10vw;
+
+}
+
+section {
+    color: rgba(88, 107, 164, 1);
+    font-size: 7vw;
+}
+
+.network {
+    height: 50%;
+    width: 50%;
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:10vh;
+   font-size: 3vw;
+   width:100%;
+   color: rgba(88, 107, 164, .7);
+}
+
+@media only screen and (max-height: 300px){
+    section {display: none}
+}
+
+@media only screen and (max-height: 500px){
+    footer {display: none}
+}
