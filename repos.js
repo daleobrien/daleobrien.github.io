@@ -11,8 +11,8 @@ window.SECTIONS = [
     { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.svg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" }
   ]},
   { id: "games", title: "Games", repos: [
-    { name: "Rock", desc: "A Rust port of ROCK, a boulders-and-diamonds game I wrote in Turbo Pascal for Windows 3.x in 1993.", lang: "Rust", img: "img/rock.png", site: "https://rock.do.id.au/", siteLabel: "Play" },
-    { name: "Dash", desc: "A digging game: tunnel through dirt, collect gems, and keep out from under the rocks.", lang: "Rust", img: "img/dash.jpg", site: "https://dash.do.id.au/", siteLabel: "Play" },
+    { name: "Rock", desc: "A Rust port of ROCK, a boulders-and-diamonds game I wrote in Turbo Pascal for Windows 3.x in 1993.", lang: "Rust", cover: true, img: "img/rock.png", site: "https://rock.do.id.au/", siteLabel: "Play" },
+    { name: "Dash", desc: "A digging game: tunnel through dirt, collect gems, and keep out from under the rocks.", lang: "Rust", cover: true, img: "img/dash.jpg", site: "https://dash.do.id.au/", siteLabel: "Play" },
     { name: "wordsearch", desc: "Word search puzzles from your own word lists, in the terminal or as a PDF, with hidden near-misses to make them harder.", lang: "Python", stars: 1, cover: true, img: "img/wordsearch.png" }
   ]},
   { id: "images", title: "Images", repos: [
