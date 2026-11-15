@@ -15,11 +15,14 @@ window.SECTIONS = [
     { name: "Dash", desc: "A digging game: tunnel through dirt, collect gems, and keep out from under the rocks.", lang: "Rust", img: "img/dash.jpg", site: "https://dash.do.id.au/", siteLabel: "Play" },
     { name: "wordsearch", desc: "Word search puzzles from your own word lists, in the terminal or as a PDF, with hidden near-misses to make them harder.", lang: "Python", stars: 1, cover: true, img: "img/wordsearch.png" }
   ]},
-  { id: "engineering", title: "Engineering", repos: [
-    { name: "lattice-gas", desc: "A cellular-automaton fluid: particles on a hexagonal lattice that shed a vortex street, after Wolfram's A New Kind of Science.", lang: "Rust", cover: true, img: "img/lattice-gas.png" },
+  { id: "images", title: "Images", repos: [
     { name: "mars", desc: "A quadtree fractal image codec in Rust, for Apple Silicon: images stored as self-similarities, rebuilt by iteration.", lang: "Rust", cover: true, img: "img/mars.svg" },
     { name: "fractal_pie", desc: "Image compression from a quadtree of least-squares planes, range-coded: 1.75 bpp in about 10 ms.", lang: "Rust", stars: 1, cover: true, img: "img/fractal-pie.svg" },
     { name: "fractal_mars", desc: "Mario Polvere's 1998 fractal image coder in C, comparing six ways to speed up the codebook search.", lang: "C", stars: 2, cover: true, img: "img/fractal-mars.svg" }
+  ]},
+  { id: "engineering", title: "Engineering", repos: [
+    { name: "lattice-gas", desc: "A cellular-automaton fluid: particles on a hexagonal lattice that shed a vortex street, after Wolfram's A New Kind of Science.", lang: "Rust", cover: true, img: "img/lattice-gas.png" },
+    { name: "CocoaPic", desc: "A PIC12F675 and PIC12C508 microcontroller simulator with a native macOS window: step, run, poke registers and drive pins.", lang: "Rust", cover: true, img: "img/cocoapic.png" }
   ]},
   { id: "servers", title: "Servers & Systems", repos: [
     { name: "sarm", desc: "A static-file web server written entirely in ARM64 assembly. HTTP/1.1, HTTP/2 and TLS 1.3, no libc.", lang: "ARM64 assembly", img: "img/sarm.svg" },
