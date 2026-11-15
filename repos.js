@@ -9,7 +9,7 @@ window.SECTIONS = [
     { name: "maze", desc: "Weave mazes, generated in Python, as SVG, PDF or text: passages cross over and under each other.", lang: "Python", stars: 130, cover: true, img: "img/maze.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
     { name: "maze-rs", desc: "Fast weave mazes, generated in Rust, as SVG, PDF or text, with an optional solution and a hand-drawn look.", lang: "Rust", cover: true, img: "img/maze-rs.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
     { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.svg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" },
-    { name: "wordsearch", desc: "Create word search puzzles from a list of words, with optional decoy words.", lang: "Python", stars: 1, img: "img/wordsearch.png" }
+    { name: "wordsearch", desc: "Word search puzzles from your own word lists, in the terminal or as a PDF, with hidden near-misses to make them harder.", lang: "Python", stars: 1, cover: true, img: "img/wordsearch.png" }
   ]},
   { id: "games", title: "Games", repos: [
     { name: "Rock", desc: "A Rust port of ROCK, a boulders-and-diamonds game I wrote in Turbo Pascal for Windows 3.x in 1993.", lang: "Rust", img: "img/rock.png", site: "https://rock.do.id.au/", siteLabel: "Play" },
