@@ -1,5 +1,7 @@
 (function () {
   var GH = "https://github.com/daleobrien/";
+  // A repo's own cover: docs/cover.png on its default branch.
+  var RAW = "https://raw.githubusercontent.com/daleobrien/";
 
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -12,12 +14,22 @@
     var href = r.url || GH + r.name;
     var art = el("article", "card");
 
-    var imgLink = el("a", "card-img");
+    var imgLink = el("a", r.cover ? "card-img cover" : "card-img");
     imgLink.href = href;
     imgLink.tabIndex = -1;
     imgLink.setAttribute("aria-hidden", "true");
     var img = el("img");
-    img.src = r.img;
+    if (r.cover) {
+      img.src = RAW + r.name + "/HEAD/docs/cover.png";
+      // Until the cover is on GitHub (or while the repo is private), the old thumbnail.
+      img.onerror = function () {
+        img.onerror = null;
+        imgLink.className = "card-img";
+        img.src = r.img;
+      };
+    } else {
+      img.src = r.img;
+    }
     img.alt = r.name + " preview";
     img.loading = "lazy";
     imgLink.appendChild(img);

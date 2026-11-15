@@ -1,12 +1,14 @@
 // THE ONLY FILE TO EDIT. To add a repo, add one line to a section's `repos` list:
 //   { name: "my-repo", desc: "One sentence.", lang: "Rust", stars: 3, img: "img/my-repo.svg" },
 // Optional: lang, stars, site (live site URL), siteLabel (link text, default "Live site"), url (defaults to https://github.com/daleobrien/<name>).
+// cover: true shows the repo's own docs/cover.png (1280 by 640) from GitHub instead, with img as the
+// fallback until that file is there (or while the repo is private).
 // Put the thumbnail in img/. To add a section, add { id, title, repos: [...] } to the list.
 window.SECTIONS = [
   { id: "mazes", title: "Mazes & Puzzles", repos: [
-    { name: "maze", desc: "Maze generator with crossings: passages weave over and under each other.", lang: "Python", stars: 130, img: "img/maze.svg", site: "https://maze.do.id.au/" },
-    { name: "maze-rs", desc: "A fast Rust port of maze. Writes weave mazes as SVG, PDF or text, with an optional solution and hand-drawn ink look.", lang: "Rust", img: "img/maze-rs.svg" },
-    { name: "lubra", desc: "Generates, reduces and renders hex-tile mazes as SVG.", lang: "Rust", img: "img/lubra.svg" },
+    { name: "maze", desc: "Weave mazes, generated in Python, as SVG, PDF or text: passages cross over and under each other.", lang: "Python", stars: 130, cover: true, img: "img/maze.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
+    { name: "maze-rs", desc: "Fast weave mazes, generated in Rust, as SVG, PDF or text, with an optional solution and a hand-drawn look.", lang: "Rust", cover: true, img: "img/maze-rs.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
+    { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.svg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" },
     { name: "wordsearch", desc: "Create word search puzzles from a list of words, with optional decoy words.", lang: "Python", stars: 1, img: "img/wordsearch.png" }
   ]},
   { id: "games", title: "Games", repos: [
