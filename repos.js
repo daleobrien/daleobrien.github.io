@@ -17,7 +17,7 @@ window.SECTIONS = [
   ]},
   { id: "engineering", title: "Engineering", repos: [
     { name: "lattice-gas", desc: "A cellular-automaton fluid: the lattice-gas model from Wolfram's A New Kind of Science.", lang: "Rust", img: "img/lattice-gas.png" },
-    { name: "mars", desc: "A quadtree fractal image codec in Rust, targeting Apple Silicon.", lang: "Rust", img: "img/mars.svg" },
+    { name: "mars", desc: "A quadtree fractal image codec in Rust, for Apple Silicon: images stored as self-similarities, rebuilt by iteration.", lang: "Rust", cover: true, img: "img/mars.svg" },
     { name: "fractal_pie", desc: "Just playing around with image compression: least-squares planes over a recursively split image.", lang: "Rust", stars: 1, img: "img/fractal-pie.svg" },
     { name: "fractal_mars", desc: "A quadtree based fractal image coder/decoder.", lang: "C", stars: 2, img: "img/fractal-mars.svg" }
   ]},
