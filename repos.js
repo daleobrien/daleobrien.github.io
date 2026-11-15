@@ -18,7 +18,7 @@ window.SECTIONS = [
   { id: "engineering", title: "Engineering", repos: [
     { name: "lattice-gas", desc: "A cellular-automaton fluid: particles on a hexagonal lattice that shed a vortex street, after Wolfram's A New Kind of Science.", lang: "Rust", cover: true, img: "img/lattice-gas.png" },
     { name: "mars", desc: "A quadtree fractal image codec in Rust, for Apple Silicon: images stored as self-similarities, rebuilt by iteration.", lang: "Rust", cover: true, img: "img/mars.svg" },
-    { name: "fractal_pie", desc: "Just playing around with image compression: least-squares planes over a recursively split image.", lang: "Rust", stars: 1, img: "img/fractal-pie.svg" },
+    { name: "fractal_pie", desc: "Image compression from a quadtree of least-squares planes, range-coded: 1.75 bpp in about 10 ms.", lang: "Rust", stars: 1, cover: true, img: "img/fractal-pie.svg" },
     { name: "fractal_mars", desc: "A quadtree based fractal image coder/decoder.", lang: "C", stars: 2, img: "img/fractal-mars.svg" }
   ]},
   { id: "servers", title: "Servers & Systems", repos: [

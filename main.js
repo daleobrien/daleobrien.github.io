@@ -61,7 +61,7 @@
     var nav = document.getElementById("nav");
     var gh = nav.lastElementChild;
 
-    data.forEach(function (sec, i) {
+    data.forEach(function (sec) {
       var n = sec.repos.length;
       var link = el("a", null, sec.title);
       link.href = "#" + sec.id;
@@ -72,7 +72,6 @@
       s.setAttribute("aria-labelledby", sec.id + "-h");
 
       var head = el("div", "section-head");
-      head.appendChild(el("div", "num", (i < 9 ? "0" : "") + (i + 1)));
       var h2 = el("h2", null, sec.title);
       h2.id = sec.id + "-h";
       head.appendChild(h2);
