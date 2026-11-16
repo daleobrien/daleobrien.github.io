@@ -8,7 +8,8 @@ window.SECTIONS = [
   { id: "mazes", title: "Mazes & Puzzles", repos: [
     { name: "maze", desc: "Weave mazes, generated in Python, as SVG, PDF or text: passages cross over and under each other.", lang: "Python", stars: 130, cover: true, img: "img/maze.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
     { name: "maze-rs", desc: "Fast weave mazes, generated in Rust, as SVG, PDF or text, with an optional solution and a hand-drawn look.", lang: "Rust", cover: true, img: "img/maze-rs.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
-    { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.svg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" }
+    { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.svg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" },
+    { name: "maze-hex", desc: "Hand-drawn hexagon mazes, generated in Rust, with tracks that cross as bridges, also on free mixes of triangles, squares and hexagons.", lang: "Rust", cover: true, img: "img/maze-hex.svg" }
   ]},
   { id: "games", title: "Games", repos: [
     { name: "Rock", desc: "A Rust port of ROCK, a boulders-and-diamonds game I wrote in Turbo Pascal for Windows 3.x in 1993.", lang: "Rust", cover: true, img: "img/rock.png", site: "https://rock.do.id.au/", siteLabel: "Play" },
