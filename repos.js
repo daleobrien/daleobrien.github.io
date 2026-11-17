@@ -26,8 +26,8 @@ window.SECTIONS = [
     { name: "CocoaPic", desc: "A PIC12F675 and PIC12C508 microcontroller simulator with a native macOS window: step, run, poke registers and drive pins.", lang: "Rust", cover: true, img: "img/cocoapic.png" }
   ]},
   { id: "servers", title: "Servers & Systems", repos: [
-    { name: "sarm", desc: "A static-file web server written entirely in ARM64 assembly. HTTP/1.1, HTTP/2 and TLS 1.3, no libc.", lang: "ARM64 assembly", img: "img/sarm.svg" },
-    { name: "Static", desc: "A minimal, self-contained static web server with zero runtime dependencies, embedded files and TLS.", lang: "Rust", img: "img/static.svg" },
+    { name: "sarm", desc: "A static-file web server written entirely in ARM64 assembly. HTTP/1.1, HTTP/2 and TLS 1.3, no libc.", lang: "ARM64 assembly", cover: true, img: "img/sarm.svg" },
+    { name: "Static", desc: "A minimal, self-contained static web server with zero runtime dependencies, embedded files and TLS.", lang: "Rust", cover: true, img: "img/static.svg" },
     { name: "start-stop-daemon", desc: "A C rewrite of Debian's start-stop-daemon.", lang: "C", stars: 50, img: "img/start-stop-daemon.svg" }
   ]},
   { id: "utils", title: "Utils", repos: [
