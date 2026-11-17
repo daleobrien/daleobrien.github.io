@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Is Dale awake? — Dale O'Brien</title>
+        <meta name="description" content="Whether Dale is awake or asleep right now, straight from his iPhone's Sleep Focus." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" />
+        <link rel="stylesheet" href="../style.css" />
+        <style>
+            .sleep { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem 4rem; padding: 6rem 0; }
+            .face[hidden] { display: none; }
+            .face { width: min(16rem, 60vw); height: auto; color: #000; flex: 0 0 auto; }
+            .sleep-text { display: flex; flex-direction: column; gap: 1.25rem; }
+            .sleep h1 { margin: 0; font-family: "Space Grotesk", Inter, system-ui, sans-serif; font-weight: 700; font-size: clamp(3.5rem, 11vw, 8rem); line-height: 0.95; letter-spacing: -0.045em; }
+            .note { margin: 0; font-size: 0.875rem; color: #555; max-width: 36ch; line-height: 1.5; }
+            @media (max-width: 480px) { .sleep { padding: 3.5rem 0; } }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <header class="site-header">
+                <div class="topbar">
+                    <a class="brand" href="../">daleobrien</a>
+                    <nav class="nav" aria-label="Links">
+                        <a href="https://github.com/daleobrien">GitHub</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="sleep" aria-live="polite">
+                <svg class="face" data-state="awake" hidden xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 235" role="img" aria-label="bald sleepy round face with stubble, awake" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <mask id="ear-mask-awake-neutral" maskUnits="userSpaceOnUse" x="-20" y="-20" width="221" height="275">
+    <rect x="-20" y="-20" width="221" height="275" fill="#fff"/>
+    <path d="M90.5 40C136 40 156 74 155 118C154 170 126 206 90.5 206C55 206 27 170 26 118C25 74 45 40 90.5 40Z" fill="#000"/>
+  </mask>
+  <path d="M69 201v21M112 201v21"/>
+  <g>
+    <path d="M34 124c-24-14-34 26-14 36c5 3 11 2 15-2M147 124c24-14 34 26 14 36c-5 3-11 2-15-2" mask="url(#ear-mask-awake-neutral)"/>
+    <path d="M90.5 40C136 40 156 74 155 118C154 170 126 206 90.5 206C55 206 27 170 26 118C25 74 45 40 90.5 40Z"/>
+      <g fill="currentColor" stroke="none"><circle cx="45.5" cy="161.0" r="2.2"/><circle cx="55.3" cy="159.2" r="2.2"/><circle cx="127.4" cy="158.6" r="2.2"/><circle cx="138.1" cy="159.9" r="2.2"/><circle cx="50.4" cy="167.0" r="2.2"/><circle cx="61.9" cy="167.6" r="2.2"/><circle cx="69.9" cy="167.2" r="2.2"/><circle cx="78.5" cy="167.5" r="2.2"/><circle cx="106.0" cy="169.1" r="2.2"/><circle cx="115.6" cy="169.3" r="2.2"/><circle cx="124.0" cy="166.8" r="2.2"/><circle cx="133.6" cy="169.2" r="2.2"/><circle cx="55.4" cy="176.5" r="2.2"/><circle cx="66.1" cy="174.3" r="2.2"/><circle cx="127.1" cy="175.4" r="2.2"/><circle cx="61.8" cy="183.5" r="2.2"/><circle cx="69.3" cy="184.2" r="2.2"/><circle cx="123.9" cy="182.2" r="2.2"/></g>
+    <path stroke-width="6" d="M93 145c3 6 9 11 7 15s-5 4-8 4"/>
+    <path stroke-width="6" d="M67 120c7-3 14-3 21 0M113 120c7-3 14-3 21 0"/><ellipse cx="78" cy="137" rx="4.5" ry="6.5" fill="currentColor" stroke="none"/><ellipse cx="123" cy="137" rx="4.5" ry="6.5" fill="currentColor" stroke="none"/><path stroke-width="7" d="M87 185c8 2 16 2 24 0"/>
+  </g>
+</svg>
+
+                <svg class="face" data-state="asleep" hidden xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 235" role="img" aria-label="bald sleepy round face with stubble, " fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <mask id="ear-mask-sleepy" maskUnits="userSpaceOnUse" x="-20" y="-20" width="221" height="275">
+    <rect x="-20" y="-20" width="221" height="275" fill="#fff"/>
+    <path d="M90.5 40C136 40 156 74 155 118C154 170 126 206 90.5 206C55 206 27 170 26 118C25 74 45 40 90.5 40Z" fill="#000"/>
+  </mask>
+  <path d="M69 201v21M112 201v21"/>
+  <g>
+    <path d="M34 124c-24-14-34 26-14 36c5 3 11 2 15-2M147 124c24-14 34 26 14 36c-5 3-11 2-15-2" mask="url(#ear-mask-sleepy)"/>
+    <path d="M90.5 40C136 40 156 74 155 118C154 170 126 206 90.5 206C55 206 27 170 26 118C25 74 45 40 90.5 40Z"/>
+      <g fill="currentColor" stroke="none"><circle cx="45.5" cy="161.0" r="2.2"/><circle cx="55.3" cy="159.2" r="2.2"/><circle cx="127.4" cy="158.6" r="2.2"/><circle cx="138.1" cy="159.9" r="2.2"/><circle cx="50.4" cy="167.0" r="2.2"/><circle cx="61.9" cy="167.6" r="2.2"/><circle cx="69.9" cy="167.2" r="2.2"/><circle cx="78.5" cy="167.5" r="2.2"/><circle cx="106.0" cy="169.1" r="2.2"/><circle cx="115.6" cy="169.3" r="2.2"/><circle cx="124.0" cy="166.8" r="2.2"/><circle cx="133.6" cy="169.2" r="2.2"/><circle cx="55.4" cy="176.5" r="2.2"/><circle cx="66.1" cy="174.3" r="2.2"/><circle cx="127.1" cy="175.4" r="2.2"/><circle cx="61.8" cy="183.5" r="2.2"/><circle cx="69.3" cy="184.2" r="2.2"/><circle cx="123.9" cy="182.2" r="2.2"/></g>
+    <path stroke-width="6" d="M93 145c3 6 9 11 7 15s-5 4-8 4"/>
+    <path stroke-width="6" d="M67 122h21M113 122h21"/><path stroke-width="6" d="M70 137c4 5 12 5 16 0M115 137c4 5 12 5 16 0"/><ellipse cx="99" cy="186" rx="5" ry="6"/><path stroke-width="4.5" d="M148 30h12l-12 13h12M163 12h9l-9 10h9"/>
+  </g>
+</svg>
+
+                <div class="sleep-text">
+                    <h1 id="state">Checking&hellip;</h1>
+                    <p class="sub" id="since"></p>
+                    <p class="note">Straight from my iPhone&rsquo;s Sleep Focus, which my Apple Watch turns on at bedtime. Times are Melbourne time.</p>
+                </div>
+            </main>
+
+            <footer class="site-footer">
+                <span>&copy; Dale O'Brien</span>
+                <a href="https://github.com/daleobrien/daleobrien">How this works</a>
+            </footer>
+        </div>
+        <script>
+            const SOURCES = [
+                ["https://api.github.com/repos/daleobrien/daleobrien/contents/status.json", { headers: { Accept: "application/vnd.github.raw+json" } }],
+                ["https://raw.githubusercontent.com/daleobrien/daleobrien/main/status.json", {}],
+            ];
+            const MELBOURNE = "Australia/Melbourne";
+
+            async function load() {
+                for (const [url, opts] of SOURCES) {
+                    try {
+                        const res = await fetch(url, { ...opts, cache: "no-store" });
+                        if (res.ok) return await res.json();
+                    } catch (e) { /* try the next source */ }
+                }
+                return null;
+            }
+
+            function when(date) {
+                const day = (d) => d.toLocaleDateString("en-AU", { timeZone: MELBOURNE });
+                const time = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "numeric", minute: "2-digit" });
+                if (day(date) === day(new Date())) return time;
+                if (day(date) === day(new Date(Date.now() - 864e5))) return `yesterday ${time}`;
+                const weekday = date.toLocaleDateString("en-AU", { timeZone: MELBOURNE, weekday: "long" });
+                return `${weekday} ${time}`;
+            }
+
+            function duration(ms) {
+                const mins = Math.max(0, Math.round(ms / 60000));
+                const h = Math.floor(mins / 60), m = mins % 60;
+                return h ? `${h}h ${m}m` : `${m}m`;
+            }
+
+            async function update() {
+                const status = await load();
+                const stateEl = document.getElementById("state");
+                const sinceEl = document.getElementById("since");
+                if (!status) {
+                    stateEl.textContent = "Not sure";
+                    sinceEl.textContent = "Couldn't reach GitHub just now. Trying again shortly.";
+                    return;
+                }
+                const asleep = status.state === "asleep";
+                for (const face of document.querySelectorAll(".face")) face.toggleAttribute("hidden", face.dataset.state !== status.state);
+                stateEl.textContent = asleep ? "Asleep" : "Awake";
+                const since = new Date(status.since);
+                let text = `Since ${when(since)}, ${duration(Date.now() - since)} ago.`;
+                if (status.source === "clock") text += " Going by the clock, as my phone hasn't checked in lately.";
+                sinceEl.textContent = text;
+                document.title = `${asleep ? "Asleep" : "Awake"} — Is Dale awake?`;
+            }
+
+            update();
+            setInterval(update, 2 * 60 * 1000);
+            document.addEventListener("visibilitychange", () => { if (!document.hidden) update(); });
+        </script>
+    </body>
+</html>
