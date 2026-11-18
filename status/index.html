@@ -110,7 +110,7 @@
             const ORDER = ["awake", "asleep", "work", "dnd", "reduce", "driving", "fitness", "gaming", "reading", "mindfulness"];
             // These faces have a little animation: always on the big face, and on a
             // face in the grid while the pointer is over it.
-            const ANIMATED = ["asleep", "driving", "fitness", "reading", "work"];
+            const ANIMATED = ["awake", "asleep", "work", "dnd", "reduce", "driving", "fitness", "gaming", "reading", "mindfulness"];
             const faceSrc = (key, animate) => `faces/${key}${animate && ANIMATED.includes(key) ? "-animated" : ""}.svg`;
             const row = document.getElementById("states");
             for (const key of ORDER) {
