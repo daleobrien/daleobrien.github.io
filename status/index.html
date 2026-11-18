@@ -51,7 +51,6 @@
                 <div class="sleep-text">
                     <h1 id="state">Checking&hellip;</h1>
                     <p class="sub" id="since"></p>
-                    <p class="note">Straight from my iPhone&rsquo;s Focus modes: asleep, at work, driving and the rest. Times are Melbourne time.</p>
                 </div>
             </main>
 
@@ -78,7 +77,7 @@
 
             function when(date) {
                 const day = (d) => d.toLocaleDateString("en-AU", { timeZone: MELBOURNE });
-                const time = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "numeric", minute: "2-digit" });
+                const time = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZoneName: "short" });
                 if (day(date) === day(new Date())) return time;
                 if (day(date) === day(new Date(Date.now() - 864e5))) return `yesterday ${time}`;
                 const weekday = date.toLocaleDateString("en-AU", { timeZone: MELBOURNE, weekday: "long" });
