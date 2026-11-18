@@ -27,6 +27,11 @@
             .state img { width: 3.5rem; height: auto; }
             .state.is-current { opacity: 1; }
             @media (prefers-reduced-motion: reduce) { .state { transition: none; } }
+            @media (max-width: 640px) {
+                .states-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem 0.5rem; }
+                .state { width: auto; }
+                .state img { width: min(3.5rem, 100%); }
+            }
         </style>
     </head>
     <body>
