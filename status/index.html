@@ -23,6 +23,7 @@
             .states-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 4.75rem)); justify-content: center; gap: 1.5rem clamp(0.5rem, 2vw, 1.25rem); }
             .state { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.25; font-size: 0.75rem; font-weight: 500; text-align: center; transition: opacity 200ms; }
             .state[hidden] { display: none; }
+            .state:hover { opacity: 0.6; }
             .state img { width: min(3.5rem, 100%); height: auto; }
             @media (prefers-reduced-motion: reduce) { .state { transition: none; } }
             /* Small screens and short windows: tighter spacing all round. */
@@ -107,6 +108,10 @@
 
             // Order of the row of faces under the main one.
             const ORDER = ["awake", "asleep", "work", "dnd", "reduce", "driving", "fitness", "gaming", "reading", "mindfulness"];
+            // These faces have a little animation: always on the big face, and on a
+            // face in the grid while the pointer is over it.
+            const ANIMATED = ["asleep", "driving", "fitness", "reading", "work"];
+            const faceSrc = (key, animate) => `faces/${key}${animate && ANIMATED.includes(key) ? "-animated" : ""}.svg`;
             const row = document.getElementById("states");
             for (const key of ORDER) {
                 const li = document.createElement("li");
@@ -118,6 +123,8 @@
                 const label = document.createElement("span");
                 label.textContent = STATES[key][0];
                 li.append(img, label);
+                li.addEventListener("mouseenter", () => { img.src = faceSrc(key, true); });
+                li.addEventListener("mouseleave", () => { img.src = faceSrc(key, false); });
                 row.append(li);
             }
 
@@ -157,9 +164,7 @@
                     note = state === "asleep" ? " Set by the clock at 10pm." : " Set by the clock at 7am.";
                 }
                 const [title, alt] = STATES[state];
-                // These faces have a little animation, played only on the big face.
-                const animated = ["asleep", "driving", "fitness", "reading", "work"].includes(state);
-                face.src = `faces/${state}${animated ? "-animated" : ""}.svg`;
+                face.src = faceSrc(state, true);
                 face.alt = `Dale's face: ${alt.toLowerCase()}`;
                 face.hidden = false;
                 // The row shows the other faces; the current one is the big face above.
