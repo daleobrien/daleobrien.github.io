@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181 235" aria-label="bald sleepy round face with stubble, " fill="none" stroke="#000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <mask id="ear-mask-sleepy" maskUnits="userSpaceOnUse" x="-20" y="-20" width="221" height="275">
+    <rect x="-20" y="-20" width="221" height="275" fill="#fff"/>
+    <path d="M90.5 40C136 40 156 74 155 118C154 170 126 206 90.5 206C55 206 27 170 26 118C25 74 45 40 90.5 40Z" fill="#000"/>
+  </mask>
+  <path d="M69 201v21M112 201v21"/>
+  <g>
+    <path d="M34 124c-24-14-34 26-14 36c5 3 11 2 15-2M147 124c24-14 34 26 14 36c-5 3-11 2-15-2" mask="url(#ear-mask-sleepy)"/>
+    <path d="M90.5 40C136 40 156 74 155 118C154 170 126 206 90.5 206C55 206 27 170 26 118C25 74 45 40 90.5 40Z"/>
+      <g fill="#000" stroke="none"><circle cx="45.5" cy="161.0" r="2.2"/><circle cx="55.3" cy="159.2" r="2.2"/><circle cx="127.4" cy="158.6" r="2.2"/><circle cx="138.1" cy="159.9" r="2.2"/><circle cx="50.4" cy="167.0" r="2.2"/><circle cx="61.9" cy="167.6" r="2.2"/><circle cx="69.9" cy="167.2" r="2.2"/><circle cx="78.5" cy="167.5" r="2.2"/><circle cx="106.0" cy="169.1" r="2.2"/><circle cx="115.6" cy="169.3" r="2.2"/><circle cx="124.0" cy="166.8" r="2.2"/><circle cx="133.6" cy="169.2" r="2.2"/><circle cx="55.4" cy="176.5" r="2.2"/><circle cx="66.1" cy="174.3" r="2.2"/><circle cx="127.1" cy="175.4" r="2.2"/><circle cx="61.8" cy="183.5" r="2.2"/><circle cx="69.3" cy="184.2" r="2.2"/><circle cx="123.9" cy="182.2" r="2.2"/></g>
+    <path stroke-width="6" d="M93 145c3 6 9 11 7 15s-5 4-8 4"/>
+    <path stroke-width="6" d="M67 122h21M113 122h21"/><path stroke-width="6" d="M70 137c4 5 12 5 16 0M115 137c4 5 12 5 16 0"/><ellipse cx="99" cy="186" rx="5" ry="6"/><style>
+    /* The z's appear one after the other, bob up a touch, then fade together. */
+    .z { animation: z1 3.6s ease-in-out infinite; }
+    .z2 { animation-name: z2; }
+    @keyframes z1 {
+      0%, 8% { opacity: 0; transform: translateY(1.5px); }
+      25%, 80% { opacity: 1; transform: translateY(-1.5px); }
+      100% { opacity: 0; transform: translateY(-1.5px); }
+    }
+    @keyframes z2 {
+      0%, 30% { opacity: 0; transform: translateY(1.5px); }
+      50%, 80% { opacity: 1; transform: translateY(-1.5px); }
+      100% { opacity: 0; transform: translateY(-1.5px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .z { animation: none; } }
+  </style>
+  <path class="z" stroke-width="4.5" d="M148 30h12l-12 13h12"/>
+  <path class="z z2" stroke-width="4.5" d="M163 12h9l-9 10h9"/>
+  </g>
+</svg>
