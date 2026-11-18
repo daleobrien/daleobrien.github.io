@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>What's Dale up to? — Dale O'Brien</title>
+        <meta name="description" content="What Dale is up to right now, straight from his iPhone's Focus modes." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" />
+        <link rel="stylesheet" href="../style.css" />
+        <style>
+            .sleep { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem 4rem; padding: 6rem 0; }
+            .face[hidden] { display: block; visibility: hidden; }
+            .face { width: min(16rem, 60vw); height: auto; color: #000; flex: 0 0 auto; }
+            .sleep-text { flex: 1 1 18rem; min-width: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+            .sleep h1 { margin: 0; font-family: "Space Grotesk", Inter, system-ui, sans-serif; font-weight: 700; font-size: clamp(3rem, 8vw, 7rem); line-height: 0.95; letter-spacing: -0.045em; }
+            .note { margin: 0; font-size: 0.875rem; color: #555; max-width: 36ch; line-height: 1.5; }
+            @media (max-width: 480px) { .sleep { padding: 3.5rem 0; } }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <header class="site-header">
+                <div class="topbar">
+                    <a class="brand" href="../">daleobrien</a>
+                    <nav class="nav" aria-label="Links">
+                        <a href="https://github.com/daleobrien">GitHub</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="sleep" aria-live="polite">
+                <img class="face" id="face" src="faces/awake.svg" alt="" hidden />
+
+                <div class="sleep-text">
+                    <h1 id="state">Checking&hellip;</h1>
+                    <p class="sub" id="since"></p>
+                    <p class="note">Straight from my iPhone&rsquo;s Focus modes: asleep, at work, driving and the rest. Times are Melbourne time.</p>
+                </div>
+            </main>
+
+            <footer class="site-footer">
+                <span>&copy; Dale O'Brien</span>
+                <a href="https://github.com/daleobrien/daleobrien">How this works</a>
+            </footer>
+        </div>
+        <script>
+            const SOURCES = [
+                ["https://api.github.com/repos/daleobrien/daleobrien/contents/status.json", { headers: { Accept: "application/vnd.github.raw+json" } }],
+                ["https://raw.githubusercontent.com/daleobrien/daleobrien/main/status.json", {}],
+            ];
+            const MELBOURNE = "Australia/Melbourne";
+
+            async function load() {
+                for (const [url, opts] of SOURCES) {
+                    try {
+                        const res = await fetch(url, { ...opts, cache: "no-store" });
+                        if (res.ok) return await res.json();
+                    } catch (e) { /* try the next source */ }
+                }
+                return null;
+            }
+
+            function when(date) {
+                const day = (d) => d.toLocaleDateString("en-AU", { timeZone: MELBOURNE });
+                const time = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "numeric", minute: "2-digit" });
+                if (day(date) === day(new Date())) return time;
+                if (day(date) === day(new Date(Date.now() - 864e5))) return `yesterday ${time}`;
+                const weekday = date.toLocaleDateString("en-AU", { timeZone: MELBOURNE, weekday: "long" });
+                return `${weekday} ${time}`;
+            }
+
+            function duration(ms) {
+                const mins = Math.max(0, Math.round(ms / 60000));
+                const h = Math.floor(mins / 60), m = mins % 60;
+                return h ? `${h}h ${m}m` : `${m}m`;
+            }
+
+            const STATES = {
+                awake: ["Awake", "Awake"],
+                asleep: ["Asleep", "Asleep"],
+                work: ["At work", "At work"],
+                driving: ["Driving", "Driving"],
+                fitness: ["Working out", "Working out"],
+                gaming: ["Gaming", "Gaming"],
+                reading: ["Reading", "Reading"],
+                mindfulness: ["Mindful", "Being mindful"],
+                dnd: ["Heads down", "Do not disturb"],
+                personal: ["Free", "Free"],
+            };
+
+            async function update() {
+                const status = await load();
+                const stateEl = document.getElementById("state");
+                const sinceEl = document.getElementById("since");
+                const face = document.getElementById("face");
+                if (!status) {
+                    stateEl.textContent = "Not sure";
+                    sinceEl.textContent = "Couldn't reach GitHub just now. Trying again shortly.";
+                    return;
+                }
+                let state = STATES[status.state] ? status.state : "awake";
+                let since = new Date(status.since);
+                let note = "";
+                // A Focus that should have ended by now: the phone missed the "off".
+                if (status.expires && new Date(status.expires) < new Date()) {
+                    since = new Date(status.expires);
+                    state = "awake";
+                    note = " Probably, anyway.";
+                } else if (status.source === "clock") {
+                    note = state === "asleep" ? " Set by the clock at 10pm." : " Set by the clock at 7am.";
+                }
+                const [title, alt] = STATES[state];
+                face.src = `faces/${state}.svg`;
+                face.alt = `Dale's face: ${alt.toLowerCase()}`;
+                face.hidden = false;
+                stateEl.textContent = title;
+                sinceEl.textContent = `Since ${when(since)}, ${duration(Date.now() - since)} ago.${note}`;
+                document.title = `${title} — What's Dale up to?`;
+            }
+
+            update();
+            setInterval(update, 2 * 60 * 1000);
+            document.addEventListener("visibilitychange", () => { if (!document.hidden) update(); });
+        </script>
+    </body>
+</html>
