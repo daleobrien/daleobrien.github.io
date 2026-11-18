@@ -22,8 +22,8 @@
             .states { border-top: 1px solid #000; padding: clamp(1.25rem, 4vh, 3rem) 0; }
             .states-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 4.75rem)); justify-content: center; gap: 1.5rem clamp(0.5rem, 2vw, 1.25rem); }
             .state { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.25; font-size: 0.75rem; font-weight: 500; text-align: center; transition: opacity 200ms; }
+            .state[hidden] { display: none; }
             .state img { width: min(3.5rem, 100%); height: auto; }
-            .state.is-current { opacity: 1; }
             @media (prefers-reduced-motion: reduce) { .state { transition: none; } }
         </style>
     </head>
@@ -116,7 +116,7 @@
             // Lay the faces out in equal rows: the most columns that fit and divide the
             // number of faces evenly (10 -> 10, 5 or 2 per row).
             function layoutRow() {
-                const n = row.children.length;
+                const n = [...row.children].filter((li) => !li.hidden).length;
                 const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
                 const minItem = 3.25 * remPx, gap = parseFloat(getComputedStyle(row).columnGap) || 0;
                 const fit = Math.max(1, Math.floor((row.clientWidth + gap) / (minItem + gap)));
@@ -152,11 +152,9 @@
                 face.src = `faces/${state}.svg`;
                 face.alt = `Dale's face: ${alt.toLowerCase()}`;
                 face.hidden = false;
-                for (const li of row.children) {
-                    const current = li.dataset.state === state;
-                    li.classList.toggle("is-current", current);
-                    if (current) li.setAttribute("aria-current", "true"); else li.removeAttribute("aria-current");
-                }
+                // The row shows the other faces; the current one is the big face above.
+                for (const li of row.children) li.hidden = li.dataset.state === state;
+                layoutRow();
                 stateEl.textContent = title;
                 sinceEl.textContent = `Since ${when(since)}, ${duration(Date.now() - since)} ago.${note}`;
                 document.title = `${title} — What's Dale up to?`;
