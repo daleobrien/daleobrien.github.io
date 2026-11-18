@@ -157,8 +157,9 @@
                     note = state === "asleep" ? " Set by the clock at 10pm." : " Set by the clock at 7am.";
                 }
                 const [title, alt] = STATES[state];
-                // The sleeping face's z's drift up while it's the big face.
-                face.src = `faces/${state}${state === "asleep" ? "-animated" : ""}.svg`;
+                // These faces have a little animation, played only on the big face.
+                const animated = ["asleep", "driving", "fitness", "reading", "work"].includes(state);
+                face.src = `faces/${state}${animated ? "-animated" : ""}.svg`;
                 face.alt = `Dale's face: ${alt.toLowerCase()}`;
                 face.hidden = false;
                 // The row shows the other faces; the current one is the big face above.
