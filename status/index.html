@@ -67,6 +67,77 @@
             ];
             const MELBOURNE = "Australia/Melbourne";
 
+            // Language: ?lang=de or ?lang=en wins, then the browser's preferred languages.
+            const TEXT = {
+                en: {
+                    locale: "en-AU",
+                    states: {
+                        awake: ["Awake", "awake"],
+                        asleep: ["Asleep", "asleep"],
+                        work: ["At work", "at work"],
+                        driving: ["Driving", "driving"],
+                        fitness: ["Working out", "working out"],
+                        gaming: ["Gaming", "gaming"],
+                        reading: ["Reading", "reading"],
+                        mindfulness: ["Mindful", "being mindful"],
+                        dnd: ["Heads down", "do not disturb"],
+                        reduce: ["Quiet", "keeping things quiet"],
+                        personal: ["Free", "free"],
+                    },
+                    since: (when, ago) => `Since ${when}, ${ago} ago.`,
+                    yesterday: (time) => `yesterday ${time}`,
+                    duration: (h, m) => (h ? `${h}h ${m}m` : `${m}m`),
+                    probably: " Probably, anyway.",
+                    clockSleep: " Set by the clock at 22:00.",
+                    clockWake: " Set by the clock at 07:00.",
+                    unknown: "Not sure",
+                    offline: "Couldn't reach GitHub just now. Trying again shortly.",
+                    alt: (what) => `Dale's face: ${what}`,
+                    title: (state) => `${state} — What's Dale up to?`,
+                    faces: "All the faces",
+                },
+                de: {
+                    locale: "de-DE",
+                    states: {
+                        awake: ["Wach", "wach"],
+                        asleep: ["Schläft", "schläft"],
+                        work: ["Bei der Arbeit", "bei der Arbeit"],
+                        driving: ["Am Steuer", "am Steuer"],
+                        fitness: ["Beim Sport", "beim Sport"],
+                        gaming: ["Am Zocken", "am Zocken"],
+                        reading: ["Am Lesen", "am Lesen"],
+                        mindfulness: ["Achtsam", "achtsam"],
+                        dnd: ["Konzentriert", "nicht stören"],
+                        reduce: ["Ruhig", "lieber ruhig"],
+                        personal: ["Frei", "frei"],
+                    },
+                    since: (when, ago) => `Seit ${when}, vor ${ago}`.replace(/\.?$/, "."),
+                    yesterday: (time) => `gestern ${time}`,
+                    duration: (h, m) => (h ? `${h} Std. ${m} Min.` : `${m} Min.`),
+                    probably: " Wahrscheinlich jedenfalls.",
+                    clockSleep: " Um 22:00 von der Uhr gesetzt.",
+                    clockWake: " Um 07:00 von der Uhr gesetzt.",
+                    unknown: "Unklar",
+                    offline: "GitHub ist gerade nicht erreichbar. Gleich noch einmal.",
+                    alt: (what) => `Dales Gesicht: ${what}`,
+                    title: (state) => `${state} — Was macht Dale gerade?`,
+                    faces: "Alle Gesichter",
+                },
+            };
+            function pickLanguage() {
+                const asked = new URLSearchParams(location.search).get("lang");
+                const wanted = asked ? [asked] : navigator.languages || [navigator.language || "en"];
+                for (const tag of wanted) {
+                    const base = String(tag).toLowerCase().split("-")[0];
+                    if (TEXT[base]) return base;
+                }
+                return "en";
+            }
+            const LANG = pickLanguage();
+            const T = TEXT[LANG];
+            document.documentElement.lang = LANG;
+            document.querySelector(".states").setAttribute("aria-label", T.faces);
+
             async function load() {
                 for (const [url, opts] of SOURCES) {
                     try {
@@ -79,32 +150,23 @@
 
             function when(date) {
                 const day = (d) => d.toLocaleDateString("en-AU", { timeZone: MELBOURNE });
-                const time = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZoneName: "short" });
+                // 24-hour time; the zone name stays Australian (AEDT/AEST) in every language.
+                const clock = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+                const zone = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, timeZoneName: "short" }).split(" ").pop();
+                const time = `${clock} ${zone}`;
                 if (day(date) === day(new Date())) return time;
-                if (day(date) === day(new Date(Date.now() - 864e5))) return `yesterday ${time}`;
-                const weekday = date.toLocaleDateString("en-AU", { timeZone: MELBOURNE, weekday: "long" });
+                if (day(date) === day(new Date(Date.now() - 864e5))) return T.yesterday(time);
+                const weekday = date.toLocaleDateString(T.locale, { timeZone: MELBOURNE, weekday: "long" });
                 return `${weekday} ${time}`;
             }
 
             function duration(ms) {
                 const mins = Math.max(0, Math.round(ms / 60000));
                 const h = Math.floor(mins / 60), m = mins % 60;
-                return h ? `${h}h ${m}m` : `${m}m`;
+                return T.duration(h, m);
             }
 
-            const STATES = {
-                awake: ["Awake", "Awake"],
-                asleep: ["Asleep", "Asleep"],
-                work: ["At work", "At work"],
-                driving: ["Driving", "Driving"],
-                fitness: ["Working out", "Working out"],
-                gaming: ["Gaming", "Gaming"],
-                reading: ["Reading", "Reading"],
-                mindfulness: ["Mindful", "Being mindful"],
-                dnd: ["Heads down", "Do not disturb"],
-                reduce: ["Quiet", "Keeping things quiet"],
-                personal: ["Free", "Free"],
-            };
+            const STATES = T.states;
 
             // Order of the row of faces under the main one.
             const ORDER = ["awake", "asleep", "work", "dnd", "reduce", "driving", "fitness", "gaming", "reading", "mindfulness"];
@@ -145,8 +207,8 @@
                 const sinceEl = document.getElementById("since");
                 const face = document.getElementById("face");
                 if (!status) {
-                    stateEl.textContent = "Not sure";
-                    sinceEl.textContent = "Couldn't reach GitHub just now. Trying again shortly.";
+                    stateEl.textContent = T.unknown;
+                    sinceEl.textContent = T.offline;
                     return;
                 }
                 let state = STATES[status.state] ? status.state : "awake";
@@ -156,20 +218,20 @@
                 if (status.expires && new Date(status.expires) < new Date()) {
                     since = new Date(status.expires);
                     state = "awake";
-                    note = " Probably, anyway.";
+                    note = T.probably;
                 } else if (status.source === "clock") {
-                    note = state === "asleep" ? " Set by the clock at 10pm." : " Set by the clock at 7am.";
+                    note = state === "asleep" ? T.clockSleep : T.clockWake;
                 }
                 const [title, alt] = STATES[state];
                 face.src = faceSrc(state, true);
-                face.alt = `Dale's face: ${alt.toLowerCase()}`;
+                face.alt = T.alt(alt);
                 face.hidden = false;
                 // The row shows the other faces; the current one is the big face above.
                 for (const li of row.children) li.hidden = li.dataset.state === state;
                 layoutRow();
                 stateEl.textContent = title;
-                sinceEl.textContent = `Since ${when(since)}, ${duration(Date.now() - since)} ago.${note}`;
-                document.title = `${title} — What's Dale up to?`;
+                sinceEl.textContent = T.since(when(since), duration(Date.now() - since)) + note;
+                document.title = T.title(title);
             }
 
             update();
