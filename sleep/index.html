@@ -119,7 +119,7 @@
                 stateEl.textContent = asleep ? "Asleep" : "Awake";
                 const since = new Date(status.since);
                 let text = `Since ${when(since)}, ${duration(Date.now() - since)} ago.`;
-                if (status.source === "clock") text += " Going by the clock, as my phone hasn't checked in lately.";
+                if (status.source === "clock") text += asleep ? " Set by the clock at 10pm." : " Set by the clock at 7am.";
                 sinceEl.textContent = text;
                 document.title = `${asleep ? "Asleep" : "Awake"} — Is Dale awake?`;
             }
