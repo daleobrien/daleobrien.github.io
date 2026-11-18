@@ -25,6 +25,17 @@
             .state[hidden] { display: none; }
             .state img { width: min(3.5rem, 100%); height: auto; }
             @media (prefers-reduced-motion: reduce) { .state { transition: none; } }
+            /* Small screens and short windows: tighter spacing all round. */
+            @media (max-width: 640px), (max-height: 600px) {
+                .topbar { padding: 1rem 0; }
+                .sleep { gap: 0.5rem 2rem; padding: 1rem 0 1.25rem; }
+                .sleep-text { gap: 0.375rem; }
+                .face { width: clamp(6rem, min(24vh, 36vw), 12rem); }
+                .states { padding: 1rem 0 1.25rem; }
+                .states-row { row-gap: 1rem; }
+                .state { gap: 0.25rem; }
+                .state img { width: min(2.75rem, 100%); }
+            }
         </style>
     </head>
     <body>
