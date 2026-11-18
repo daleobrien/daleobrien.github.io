@@ -5,16 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>What's Dale up to? — Dale O'Brien</title>
         <meta name="description" content="What Dale is up to right now, straight from his iPhone's Focus modes." />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" />
         <link rel="stylesheet" href="../style.css" />
         <style>
+            body, .brand { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
             .sleep { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(1rem, 3vh, 2rem) clamp(2rem, 5vw, 4rem); padding: clamp(1.5rem, 7vh, 6rem) 0; }
             .face[hidden] { display: block; visibility: hidden; }
             .face { width: clamp(7rem, min(30vh, 45vw), 16rem); height: auto; color: #000; flex: 0 0 auto; }
             .sleep-text { flex: 1 1 18rem; min-width: 0; display: flex; flex-direction: column; gap: clamp(0.5rem, 2vh, 1.25rem); }
-            .sleep h1 { margin: 0; font-family: "Space Grotesk", Inter, system-ui, sans-serif; font-weight: 700; font-size: clamp(3rem, 8vw, 7rem); line-height: 0.95; letter-spacing: -0.045em; }
+            .sleep h1 { margin: 0; font-weight: 700; font-size: clamp(3rem, 8vw, 7rem); line-height: 0.95; letter-spacing: -0.045em; }
             .note { margin: 0; font-size: 0.875rem; color: #555; max-width: 36ch; line-height: 1.5; }
             @media (max-width: 640px) {
                 .sleep { flex-direction: column; text-align: center; }
@@ -22,7 +20,7 @@
             }
             
             .states { border-top: 1px solid #000; padding: clamp(1.25rem, 4vh, 3rem) 0; }
-            .states-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1.5rem 1.25rem; }
+            .states-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 1.25rem; }
             .state { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 4.75rem; opacity: 0.25; font-size: 0.75rem; font-weight: 500; text-align: center; transition: opacity 200ms; }
             .state img { width: 3.5rem; height: auto; }
             .state.is-current { opacity: 1; }
