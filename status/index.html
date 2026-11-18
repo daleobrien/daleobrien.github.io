@@ -23,6 +23,7 @@
             .states-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 4.75rem)); justify-content: center; gap: 1.5rem clamp(0.5rem, 2vw, 1.25rem); }
             .state { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.25; font-size: 0.75rem; font-weight: 500; text-align: center; transition: opacity 200ms; }
             .state[hidden] { display: none; }
+            .state.is-current { opacity: 1; }
             .state img { width: min(3.5rem, 100%); height: auto; }
             @media (prefers-reduced-motion: reduce) { .state { transition: none; } }
         </style>
@@ -113,16 +114,31 @@
                 row.append(li);
             }
 
+            let currentState = null;
+
             // Lay the faces out in equal rows: the most columns that fit and divide the
-            // number of faces evenly (10 -> 10, 5 or 2 per row).
+            // number of faces evenly. The current face (already shown large above) is left
+            // out of the grid only when that gives fewer rows, e.g. 9 in one row instead of
+            // 10 in two; otherwise every face shows, with the current one in full.
+            function columnsFor(n, fit) {
+                for (let c = Math.min(n, fit); c >= 1; c--) if (n % c === 0) return c;
+                return 1;
+            }
             function layoutRow() {
-                const n = [...row.children].filter((li) => !li.hidden).length;
+                const items = [...row.children];
                 const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
                 const minItem = 3.25 * remPx, gap = parseFloat(getComputedStyle(row).columnGap) || 0;
                 const fit = Math.max(1, Math.floor((row.clientWidth + gap) / (minItem + gap)));
-                let cols = 1;
-                for (let c = Math.min(n, fit); c >= 1; c--) if (n % c === 0) { cols = c; break; }
-                row.style.setProperty("--cols", cols);
+                const all = items.length;
+                const withAll = columnsFor(all, fit);
+                const without = currentState ? columnsFor(all - 1, fit) : 0;
+                const hideCurrent = without && Math.ceil((all - 1) / without) < Math.ceil(all / withAll);
+                for (const li of items) {
+                    const current = li.dataset.state === currentState;
+                    li.classList.toggle("is-current", current);
+                    li.hidden = current && hideCurrent;
+                }
+                row.style.setProperty("--cols", hideCurrent ? without : withAll);
             }
             layoutRow();
             window.addEventListener("resize", layoutRow);
@@ -152,8 +168,7 @@
                 face.src = `faces/${state}.svg`;
                 face.alt = `Dale's face: ${alt.toLowerCase()}`;
                 face.hidden = false;
-                // The row shows the other faces; the current one is the big face above.
-                for (const li of row.children) li.hidden = li.dataset.state === state;
+                currentState = state;
                 layoutRow();
                 stateEl.textContent = title;
                 sinceEl.textContent = `Since ${when(since)}, ${duration(Date.now() - since)} ago.${note}`;
