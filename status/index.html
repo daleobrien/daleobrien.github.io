@@ -108,8 +108,7 @@
 
             // Order of the row of faces under the main one.
             const ORDER = ["awake", "asleep", "work", "dnd", "reduce", "driving", "fitness", "gaming", "reading", "mindfulness"];
-            // These faces have a little animation: always on the big face, and on a
-            // face in the grid while the pointer is over it.
+            // Every face has a little animation, always running, big face and grid alike.
             const ANIMATED = ["awake", "asleep", "work", "dnd", "reduce", "driving", "fitness", "gaming", "reading", "mindfulness"];
             const faceSrc = (key, animate) => `faces/${key}${animate && ANIMATED.includes(key) ? "-animated" : ""}.svg`;
             const row = document.getElementById("states");
@@ -118,13 +117,11 @@
                 li.className = "state";
                 li.dataset.state = key;
                 const img = document.createElement("img");
-                img.src = `faces/${key}.svg`;
+                img.src = faceSrc(key, true);
                 img.alt = "";
                 const label = document.createElement("span");
                 label.textContent = STATES[key][0];
                 li.append(img, label);
-                li.addEventListener("mouseenter", () => { img.src = faceSrc(key, true); });
-                li.addEventListener("mouseleave", () => { img.src = faceSrc(key, false); });
                 row.append(li);
             }
 
