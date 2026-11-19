@@ -13,7 +13,6 @@
             .face { width: clamp(7rem, min(30vh, 45vw), 16rem); height: auto; color: #000; flex: 0 0 auto; }
             .sleep-text { flex: 0 1 auto; min-width: 0; display: flex; flex-direction: column; gap: clamp(0.5rem, 2vh, 1.25rem); }
             .sleep h1 { margin: 0; font-weight: 700; font-size: clamp(3rem, 8vw, 7rem); line-height: 0.95; letter-spacing: -0.045em; }
-            .note { margin: 0; font-size: 0.875rem; color: #555; max-width: 36ch; line-height: 1.5; }
             @media (max-width: 640px) {
                 .sleep { flex-direction: column; text-align: center; }
                 .sleep-text { flex: none; align-items: center; }
@@ -52,7 +51,6 @@
 
                 <div class="sleep-text">
                     <h1 id="state">&nbsp;</h1>
-                    <p class="sub" id="since"></p>
                 </div>
             </main>
 
@@ -65,7 +63,6 @@
                 ["https://api.github.com/repos/daleobrien/daleobrien/contents/status.json", { headers: { Accept: "application/vnd.github.raw+json" } }],
                 ["https://raw.githubusercontent.com/daleobrien/daleobrien/main/status.json", {}],
             ];
-            const MELBOURNE = "Australia/Melbourne";
 
             // Language: ?lang=de or ?lang=en wins, then the browser's preferred languages.
             const TEXT = {
@@ -84,14 +81,7 @@
                         reduce: ["Quiet", "keeping things quiet"],
                         personal: ["Free", "free"],
                     },
-                    since: (when, ago) => `Since ${when}, ${ago} ago.`,
-                    yesterday: (time) => `yesterday ${time}`,
-                    duration: (h, m) => (h ? `${h}h ${m}m` : `${m}m`),
-                    probably: " Probably, anyway.",
-                    clockSleep: " Set by the clock at 22:00.",
-                    clockWake: " Set by the clock at 07:00.",
                     unknown: "Not sure",
-                    offline: "Couldn't reach GitHub just now. Trying again shortly.",
                     alt: (what) => `Dale's face: ${what}`,
                     title: (state) => `${state} — What's Dale up to?`,
                     faces: "All the faces",
@@ -111,14 +101,7 @@
                         reduce: ["Ruhig", "lieber ruhig"],
                         personal: ["Frei", "frei"],
                     },
-                    since: (when, ago) => `Seit ${when}, vor ${ago}`.replace(/\.?$/, "."),
-                    yesterday: (time) => `gestern ${time}`,
-                    duration: (h, m) => (h ? `${h} Std. ${m} Min.` : `${m} Min.`),
-                    probably: " Wahrscheinlich jedenfalls.",
-                    clockSleep: " Um 22:00 von der Uhr gesetzt.",
-                    clockWake: " Um 07:00 von der Uhr gesetzt.",
                     unknown: "Unklar",
-                    offline: "GitHub ist gerade nicht erreichbar. Gleich noch einmal.",
                     alt: (what) => `Dales Gesicht: ${what}`,
                     title: (state) => `${state} — Was macht Dale gerade?`,
                     faces: "Alle Gesichter",
@@ -146,24 +129,6 @@
                     } catch (e) { /* try the next source */ }
                 }
                 return null;
-            }
-
-            function when(date) {
-                const day = (d) => d.toLocaleDateString("en-AU", { timeZone: MELBOURNE });
-                // 24-hour time; the zone name stays Australian (AEDT/AEST) in every language.
-                const clock = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
-                const zone = date.toLocaleTimeString("en-AU", { timeZone: MELBOURNE, timeZoneName: "short" }).split(" ").pop();
-                const time = `${clock} ${zone}`;
-                if (day(date) === day(new Date())) return time;
-                if (day(date) === day(new Date(Date.now() - 864e5))) return T.yesterday(time);
-                const weekday = date.toLocaleDateString(T.locale, { timeZone: MELBOURNE, weekday: "long" });
-                return `${weekday} ${time}`;
-            }
-
-            function duration(ms) {
-                const mins = Math.max(0, Math.round(ms / 60000));
-                const h = Math.floor(mins / 60), m = mins % 60;
-                return T.duration(h, m);
             }
 
             const STATES = T.states;
@@ -204,24 +169,14 @@
             async function update() {
                 const status = await load();
                 const stateEl = document.getElementById("state");
-                const sinceEl = document.getElementById("since");
                 const face = document.getElementById("face");
                 if (!status) {
                     stateEl.textContent = T.unknown;
-                    sinceEl.textContent = T.offline;
                     return;
                 }
                 let state = STATES[status.state] ? status.state : "awake";
-                let since = new Date(status.since);
-                let note = "";
                 // A Focus that should have ended by now: the phone missed the "off".
-                if (status.expires && new Date(status.expires) < new Date()) {
-                    since = new Date(status.expires);
-                    state = "awake";
-                    note = T.probably;
-                } else if (status.source === "clock") {
-                    note = state === "asleep" ? T.clockSleep : T.clockWake;
-                }
+                if (status.expires && new Date(status.expires) < new Date()) state = "awake";
                 const [title, alt] = STATES[state];
                 face.src = faceSrc(state, true);
                 face.alt = T.alt(alt);
@@ -230,7 +185,6 @@
                 for (const li of row.children) li.hidden = li.dataset.state === state;
                 layoutRow();
                 stateEl.textContent = title;
-                sinceEl.textContent = T.since(when(since), duration(Date.now() - since)) + note;
                 document.title = T.title(title);
             }
 
