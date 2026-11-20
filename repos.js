@@ -31,6 +31,7 @@ window.SECTIONS = [
     { name: "start-stop-daemon", desc: "A C rewrite of Debian's start-stop-daemon.", lang: "C", stars: 50, img: "img/start-stop-daemon.svg" }
   ]},
   { id: "utils", title: "Utils", repos: [
+    { name: "fluff", desc: "Tiny gzip and brotli files, written by hand in Rust, that expand to one repeated byte: 1 MiB of 'a' in 13 bytes of brotli.", lang: "Rust", cover: true, img: "img/fluff.png" },
     { name: "ebook-maker", desc: "Create epub ebooks from folders of plain text chapters.", lang: "Python", stars: 14, img: "img/ebook-maker.svg" },
     { name: "sql-ksuid", desc: "SQL functions to create a KSUID, for MySQL and PostgreSQL.", lang: "SQL", stars: 12, img: "img/sql-ksuid.svg" },
     { name: "workbook", desc: "Print a data structure to an ASCII table, or to an Excel spreadsheet.", lang: "Python", stars: 4, img: "img/workbook.svg" },
