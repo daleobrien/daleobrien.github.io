@@ -3,44 +3,44 @@
 // Optional: lang, stars, site (live site URL), siteLabel (link text, default "Live site"), url (defaults to https://github.com/daleobrien/<name>).
 // cover: true shows the repo's own docs/cover.png (1280 by 640) from GitHub instead, with img as the
 // fallback until that file is there (or while the repo is private).
-// Put the thumbnail in img/. To add a section, add { id, title, repos: [...] } to the list.
+// Put the thumbnail in img/, 2 by 1 like a cover (640 by 320), so every picture is the same size. To add a section, add { id, title, repos: [...] } to the list.
 window.SECTIONS = [
   { id: "mazes", title: "Mazes & Puzzles", repos: [
-    { name: "maze", desc: "Weave mazes, generated in Python, as SVG, PDF or text: passages cross over and under each other.", lang: "Python", stars: 130, cover: true, img: "img/maze.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
-    { name: "maze-rs", desc: "Fast weave mazes, generated in Rust, as SVG, PDF or text, with an optional solution and a hand-drawn look.", lang: "Rust", cover: true, img: "img/maze-rs.svg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
-    { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.svg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" },
-    { name: "maze-hex", desc: "Hand-drawn hexagon mazes, generated in Rust, with tracks that cross as bridges, also on free mixes of triangles, squares and hexagons.", lang: "Rust", cover: true, img: "img/maze-hex.svg" }
+    { name: "maze", desc: "Weave mazes, generated in Python, as SVG, PDF or text: passages cross over and under each other.", lang: "Python", stars: 130, cover: true, img: "img/maze.jpg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
+    { name: "maze-rs", desc: "Fast weave mazes, generated in Rust, as SVG, PDF or text, with an optional solution and a hand-drawn look.", lang: "Rust", cover: true, img: "img/maze-rs.jpg", site: "https://maze.do.id.au/?maze=straight", siteLabel: "Play" },
+    { name: "lubra", desc: "Hand-drawn triangle-tile mazes, generated in Rust, with tracks that pass over and under each other.", lang: "Rust", cover: true, img: "img/lubra.jpg", site: "https://maze.do.id.au/?maze=curvy", siteLabel: "Play" },
+    { name: "maze-hex", desc: "Hand-drawn hexagon mazes, generated in Rust, with tracks that cross as bridges, also on free mixes of triangles, squares and hexagons.", lang: "Rust", cover: true, img: "img/maze-hex.jpg" }
   ]},
   { id: "games", title: "Games", repos: [
-    { name: "Rock", desc: "A Rust port of ROCK, a boulders-and-diamonds game I wrote in Turbo Pascal for Windows 3.x in 1993.", lang: "Rust", cover: true, img: "img/rock.png", site: "https://rock.do.id.au/", siteLabel: "Play" },
+    { name: "Rock", desc: "A Rust port of ROCK, a boulders-and-diamonds game I wrote in Turbo Pascal for Windows 3.x in 1993.", lang: "Rust", cover: true, img: "img/rock.jpg", site: "https://rock.do.id.au/", siteLabel: "Play" },
     { name: "Dash", desc: "A digging game: tunnel through dirt, collect gems, and keep out from under the rocks.", lang: "Rust", cover: true, img: "img/dash.jpg", site: "https://dash.do.id.au/", siteLabel: "Play" },
-    { name: "wordsearch", desc: "Word search puzzles from your own word lists, in the terminal or as a PDF, with hidden near-misses to make them harder.", lang: "Python", stars: 1, cover: true, img: "img/wordsearch.png" }
+    { name: "wordsearch", desc: "Word search puzzles from your own word lists, in the terminal or as a PDF, with hidden near-misses to make them harder.", lang: "Python", stars: 1, cover: true, img: "img/wordsearch.jpg" }
   ]},
   { id: "images", title: "Images", repos: [
-    { name: "mars", desc: "A quadtree fractal image codec in Rust, for Apple Silicon: images stored as self-similarities, rebuilt by iteration.", lang: "Rust", cover: true, img: "img/mars.svg" },
-    { name: "fractal_pie", desc: "Image compression from a quadtree of least-squares planes, range-coded: 1.75 bpp in about 10 ms.", lang: "Rust", stars: 1, cover: true, img: "img/fractal-pie.svg" },
-    { name: "fractal_mars", desc: "Mario Polvere's 1998 fractal image coder in C, comparing six ways to speed up the codebook search.", lang: "C", stars: 2, cover: true, img: "img/fractal-mars.svg" }
+    { name: "mars", desc: "A quadtree fractal image codec in Rust, for Apple Silicon: images stored as self-similarities, rebuilt by iteration.", lang: "Rust", cover: true, img: "img/mars.jpg" },
+    { name: "fractal_pie", desc: "Image compression from a quadtree of least-squares planes, range-coded: 1.75 bpp in about 10 ms.", lang: "Rust", stars: 1, cover: true, img: "img/fractal-pie.jpg" },
+    { name: "fractal_mars", desc: "Mario Polvere's 1998 fractal image coder in C, comparing six ways to speed up the codebook search.", lang: "C", stars: 2, cover: true, img: "img/fractal-mars.jpg" }
   ]},
   { id: "engineering", title: "Engineering", repos: [
-    { name: "lattice-gas", desc: "A cellular-automaton fluid: particles on a hexagonal lattice that shed a vortex street, after Wolfram's A New Kind of Science.", lang: "Rust", cover: true, img: "img/lattice-gas.png" },
-    { name: "CocoaPic", desc: "A PIC12F675 and PIC12C508 microcontroller simulator with a native macOS window: step, run, poke registers and drive pins.", lang: "Rust", cover: true, img: "img/cocoapic.png" }
+    { name: "lattice-gas", desc: "A cellular-automaton fluid: particles on a hexagonal lattice that shed a vortex street, after Wolfram's A New Kind of Science.", lang: "Rust", cover: true, img: "img/lattice-gas.jpg" },
+    { name: "CocoaPic", desc: "A PIC12F675 and PIC12C508 microcontroller simulator with a native macOS window: step, run, poke registers and drive pins.", lang: "Rust", cover: true, img: "img/cocoapic.jpg" }
   ]},
   { id: "servers", title: "Servers & Systems", repos: [
-    { name: "sarm", desc: "7.4 million HTTP/2 + TLS 1.3 requests a second on 16 cores, from a static-file web server written entirely in ARM64 assembly, with no libc.", lang: "ARM64 assembly", cover: true, img: "img/sarm.svg" },
-    { name: "Static", desc: "Loads a page in 2 ms, twice as fast as nginx, in 8 MB of memory: a static file web server in Rust with every file embedded.", lang: "Rust", cover: true, img: "img/static.svg" },
-    { name: "start-stop-daemon", desc: "A C rewrite of Debian's start-stop-daemon.", lang: "C", stars: 50, img: "img/start-stop-daemon.svg" }
+    { name: "sarm", desc: "7.4 million HTTP/2 + TLS 1.3 requests a second on 16 cores, from a static-file web server written entirely in ARM64 assembly, with no libc.", lang: "ARM64 assembly", cover: true, img: "img/sarm.jpg" },
+    { name: "Static", desc: "Loads a page in 2 ms, twice as fast as nginx, in 8 MB of memory: a static file web server in Rust with every file embedded.", lang: "Rust", cover: true, img: "img/static.jpg" },
+    { name: "start-stop-daemon", desc: "A C rewrite of Debian's start-stop-daemon.", lang: "C", stars: 50, cover: true, img: "img/start-stop-daemon.jpg" }
   ]},
   { id: "utils", title: "Utils", repos: [
-    { name: "fluff", desc: "Tiny gzip and brotli files, written by hand in Rust, that expand to one repeated byte: 1 MiB of 'a' in 13 bytes of brotli.", lang: "Rust", cover: true, img: "img/fluff.png" },
-    { name: "ebook-maker", desc: "Create epub ebooks from folders of plain text chapters.", lang: "Python", stars: 14, img: "img/ebook-maker.svg" },
-    { name: "sql-ksuid", desc: "SQL functions to create a KSUID, for MySQL and PostgreSQL.", lang: "SQL", stars: 12, img: "img/sql-ksuid.svg" },
-    { name: "workbook", desc: "Print a data structure to an ASCII table, or to an Excel spreadsheet.", lang: "Python", stars: 4, img: "img/workbook.svg" },
-    { name: "npm-with-chrome-browser-action", desc: "GitHub Action: npm with a Chrome browser, for react-snap and static pre-rendering.", lang: "JavaScript", stars: 4, img: "img/npm-with-chrome-browser-action.svg" },
-    { name: "gh-pr-stats", desc: "Who reviews whose pull requests: each contributor's share across a repo's last 100 PRs.", lang: "Rust", img: "img/gh-pr-stats.svg" }
+    { name: "fluff", desc: "Tiny gzip and brotli files, written by hand in Rust, that expand to one repeated byte: 1 MiB of 'a' in 13 bytes of brotli.", lang: "Rust", cover: true, img: "img/fluff.jpg" },
+    { name: "ebook-maker", desc: "Create epub ebooks from folders of plain text chapters.", lang: "Python", stars: 14, cover: true, img: "img/ebook-maker.jpg" },
+    { name: "sql-ksuid", desc: "SQL functions to create a KSUID, for MySQL and PostgreSQL.", lang: "SQL", stars: 12, cover: true, img: "img/sql-ksuid.jpg" },
+    { name: "workbook", desc: "Print a data structure to an ASCII table, or to an Excel spreadsheet.", lang: "Python", stars: 4, cover: true, img: "img/workbook.jpg" },
+    { name: "npm-with-chrome-browser-action", desc: "GitHub Action: npm with a Chrome browser, for react-snap and static pre-rendering.", lang: "JavaScript", stars: 4, cover: true, img: "img/npm-with-chrome-browser-action.jpg" },
+    { name: "gh-pr-stats", desc: "Who reviews whose pull requests: each contributor's share across a repo's last 100 PRs.", lang: "Rust", cover: true, img: "img/gh-pr-stats.jpg" }
   ]},
   { id: "experiments", title: "Experiments & Other", repos: [
-    { name: "container-comparsions", desc: "Minimal Dockerised hello world in a dozen languages, comparing image sizes and run times.", img: "img/container-comparsions.svg" },
-    { name: "rust-only-mssql-client", desc: "Building and testing a Rust MSSQL client as a Windows executable.", lang: "Rust", img: "img/rust-only-mssql-client.svg" },
-    { name: "totem-keymap", desc: "Keymap for the TOTEM split keyboard.", img: "img/totem-keymap.svg" }
+    { name: "container-comparsions", desc: "Minimal Dockerised hello world in a dozen languages, comparing image sizes and run times.", cover: true, img: "img/container-comparsions.jpg" },
+    { name: "rust-only-mssql-client", desc: "Building and testing a Rust MSSQL client as a Windows executable.", lang: "Rust", cover: true, img: "img/rust-only-mssql-client.jpg" },
+    { name: "totem-keymap", desc: "Keymap for the TOTEM split keyboard.", img: "img/totem-keymap.png" }
   ]}
 ];
