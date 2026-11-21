@@ -20,13 +20,13 @@
     imgLink.setAttribute("aria-hidden", "true");
     var img = el("img");
     if (r.cover) {
-      img.src = RAW + r.name + "/HEAD/docs/cover.png";
       // Until the cover is on GitHub (or while the repo is private), the old thumbnail.
       img.onerror = function () {
         img.onerror = null;
         imgLink.className = "card-img";
         img.src = r.img;
       };
+      img.src = RAW + r.name + "/HEAD/docs/cover.png";
     } else {
       img.src = r.img;
     }
