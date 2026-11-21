@@ -41,6 +41,6 @@ window.SECTIONS = [
   { id: "experiments", title: "Experiments & Other", repos: [
     { name: "container-comparsions", desc: "Minimal Dockerised hello world in a dozen languages, comparing image sizes and run times.", cover: true, img: "img/container-comparsions.jpg" },
     { name: "rust-only-mssql-client", desc: "Building and testing a Rust MSSQL client as a Windows executable.", lang: "Rust", cover: true, img: "img/rust-only-mssql-client.jpg" },
-    { name: "totem-keymap", desc: "Keymap for the TOTEM split keyboard.", img: "img/totem-keymap.png" }
+    { name: "totem-keymap", desc: "Keymap for the TOTEM split keyboard.", url: "https://github.com/daleobrien/zmk-config-totem", img: "img/totem-keymap.png" }
   ]}
 ];
